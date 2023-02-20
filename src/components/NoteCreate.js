@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+// import { faker } from '@faker-js/faker';
 
 function NoteCreate() {
   const [noteTitle, setNoteTitle] = useState('');
@@ -12,9 +14,18 @@ function NoteCreate() {
     setNoteDescription(event.target.value);
   };
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    await axios.post('http://localhost:3001/notes', {
+      noteTitle,
+      noteDescription,
+      url: '',
+    });
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <input
           onChange={handleTitleChange}
           placeholder='Note Title'
