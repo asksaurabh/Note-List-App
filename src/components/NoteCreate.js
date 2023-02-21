@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { faker } from '@faker-js/faker';
 import Button from './Button';
-import Panel from './Panel';
 
-function NoteCreate() {
+function NoteCreate({ onNoteCreate }) {
   const [noteTitle, setNoteTitle] = useState('');
   const [noteDescription, setNoteDescription] = useState('');
 
@@ -18,11 +15,7 @@ function NoteCreate() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    await axios.post('http://localhost:3001/notes', {
-      noteTitle,
-      noteDescription,
-      url: faker.image.abstract(150, 150, true),
-    });
+    onNoteCreate(noteTitle, noteDescription);
     setNoteTitle('');
     setNoteDescription('');
   };
