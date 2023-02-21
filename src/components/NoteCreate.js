@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-// import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
+import Button from './Button';
+import Panel from './Panel';
 
 function NoteCreate() {
   const [noteTitle, setNoteTitle] = useState('');
@@ -19,25 +21,34 @@ function NoteCreate() {
     await axios.post('http://localhost:3001/notes', {
       noteTitle,
       noteDescription,
-      url: '',
+      url: faker.image.abstract(150, 150, true),
     });
+    setNoteTitle('');
+    setNoteDescription('');
   };
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit}>
+    <div className='flex flex-col w-3/5'>
+      <div className='flex flex-col'>
         <input
           onChange={handleTitleChange}
           placeholder='Note Title'
           value={noteTitle}
+          className='border border-black mb-3 h-10 mt-3 p-3'
         />
         <textarea
+          placeholder='Note Description'
           onChange={handleNoteDescriptionChange}
           value={noteDescription}
+          className='h-40 bg-gray-100 mb-3 p-3'
         />
-        <button>Create Note</button>
-      </form>
-      <button>Add Note Cover</button>
+        <div className='flex flex-row justify-between'>
+          <Button secondary>Add Note Cover</Button>
+          <Button onClick={handleFormSubmit} className='' primary>
+            Create Note
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

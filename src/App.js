@@ -5,7 +5,7 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   return (
-    <div>
+    <div className='grid justify-items-center'>
       <NoteCreate />
     </div>
   );

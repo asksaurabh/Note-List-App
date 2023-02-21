@@ -7,9 +7,9 @@
       "url": "https://example.com"
     },
     {
-      "noteTitle": "Mary Jane",
-      "noteDescription": "jdhjfkhkks",
-      "url": "",
+      "noteTitle": "Reading List",
+      "noteDescription": "This is a new List.",
+      "url": "https://loremflickr.com/150/150/abstract?lock=37892",
       "id": 2
     }
   ]
